@@ -1,14 +1,13 @@
 // run: node app.js
+const request = require("request");
 
-console.log("starting");
+const url =
+  "http://api.weatherstack.com/current?access_key=b5bd1da29d2810fe6b42915e8e10f5df&query=37.8267,-122.4233";
 
-// async
-setTimeout(() => {
-  console.log("2 second timeout");
-}, 2000);
+request({ url: url }, (error, response) => {
+  //   console.log("response: ", response);
+  console.log("error: ", error);
 
-setTimeout(() => {
-  console.log("0 second timeout 2");
-}, 0);
-
-console.log("stopping");
+  const data = JSON.parse(response.body);
+  console.log("current data: ", data.current);
+});
